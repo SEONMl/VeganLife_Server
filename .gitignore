@@ -1,0 +1,7 @@
+.idea
+code.py
+secret.json
+my_settings.py
+venv/
+Dockerfile
+requirements.txt

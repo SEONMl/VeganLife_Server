@@ -1,29 +1,24 @@
-from rest_framework import serializers
-from rest_framework.serializers import Serializer
+from rest_framework import serializers as sz
 
 from member.models import *
 
 
 # 객체->JSON
-class MemberSerializer(serializers.Serializer):
+class MemberSerializer(sz.Serializer):
     class Meta:
-        model=Member
-        fields=['id','email', 'password','name','nickname','height','weight','vege_type']
-    id=serializers.IntegerField()
-    email = serializers.CharField(max_length=1000)
-    password = serializers.CharField(max_length=1000)
-    name = serializers.CharField(max_length=100)
-    nickname = serializers.CharField(max_length=100)
-    height = serializers.FloatField()
-    weight = serializers.FloatField()
-    vege_type = serializers.CharField(max_length=100)
-
+        model = Member
+    email = sz.EmailField()
+    password = sz.CharField(max_length=1000)
+    name = sz.CharField(max_length=100)
+    nickname = sz.CharField(max_length=100)
+    height = sz.FloatField()
+    weight = sz.FloatField()
+    vege_type = sz.CharField(max_length=100)
 
     def create(self, validated_data):
-        return Member(**validated_data)
+        return Member.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
-        instance.id=validated_data.get('id',instance.id)
         instance.email = validated_data.get('email', instance.email)
         instance.name = validated_data.get('name', instance.name)
         instance.nickname = validated_data.get('nickname', instance.nickname)

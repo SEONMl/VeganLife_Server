@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'debug_toolbar',
     'member.apps.MemberConfig',
+    'community.apps.CommunityConfig',
+    'life_check.apps.LifeCheckConfig',
 ]
 
 MIDDLEWARE = [
